@@ -1,1 +1,2 @@
-# fampay_gateway.py uses Python standard-library modules only.
+pyTelegramBotAPI
+segno
