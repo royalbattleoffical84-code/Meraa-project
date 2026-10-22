@@ -1,3 +1,11 @@
+"""FamPay UPI auto-payment gateway (Gmail IMAP se payment verify karta hai).
+
+Ye ek MODULE hai, akela chalne wala server/bot nahi.
+Apne main bot file (jaise bot.py / main.py) me import karo, aur Render ka
+Start Command wahi main bot file hona chahiye.
+
+Test chalane ke liye:  python fampay_gateway.py --selftest
+"""
 import html as _html
 import imaplib
 import io
@@ -998,7 +1006,7 @@ def _selftest() -> int:
     import tempfile
     from email.message import EmailMessage
 
-    cfg = Config(gmail_address="x@gmail.com", gmail_app_password="x", upi_id="shop@fam")
+    cfg = Config(gmail_address="x@gmail.com", gmail_app_password="x", upi_id="shop@fam", store_name="ROCKY X STORE")
     fails = []
 
     def ok(name, cond):
@@ -1075,18 +1083,28 @@ if __name__ == "__main__":
     import sys
     if "--selftest" in sys.argv:
         raise SystemExit(_selftest())
-    print(__doc__)
+    print("=" * 70)
+    print("ERROR: fampay_gateway.py akela chalane wali file nahi hai (ye helper module hai).")
+    print("Render > Settings > Start Command me apni MAIN BOT file ka naam daalo,")
+    print("jaise:  python bot.py   ya   python main.py")
+    print("Test ke liye:  python fampay_gateway.py --selftest")
+    print("=" * 70)
+    raise SystemExit(1)
 
 
 # =============================================================================
 #  YAHAN SIRF YE TEEN LINES BHARNA
 # =============================================================================
-GMAIL_ADDRESS = ""           # Gmail ID
-GMAIL_APP_PASSWORD = ""      # Gmail App Password
-FAMPAY_UPI_ID = ""           # UPI ID
-STORE_NAME = "ROCKY X STORE"
+# Render > Environment me ye 3 variables set karo (file me password mat likho):
+#   GMAIL_ADDRESS, GMAIL_APP_PASSWORD, FAMPAY_UPI_ID   (optional: STORE_NAME)
+GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS", "")             # Gmail ID
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")   # Gmail App Password
+FAMPAY_UPI_ID = os.getenv("FAMPAY_UPI_ID", "")             # UPI ID
+STORE_NAME = os.getenv("STORE_NAME", "ROCKY X STORE")
 
 UPI_ORDER_WINDOW_SECONDS = 900
+
+logger = log      # neeche ka bot code `logger` naam use karta hai
 
 FAMPAY_CFG = Config(
     gmail_address=GMAIL_ADDRESS.strip(),
