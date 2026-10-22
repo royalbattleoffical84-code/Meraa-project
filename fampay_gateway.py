@@ -39,7 +39,7 @@ class Config:
     gmail_address: str = ""
     gmail_app_password: str = ""
     upi_id: str = ""
-    store_name: str = "YOUR STORE NAME"
+    store_name: str = "ORVIX STORE"
 
     imap_server: str = "imap.gmail.com"
     imap_port: int = 993
@@ -59,7 +59,7 @@ class Config:
     verify_max_age: int = 21600          # UTR ke 6h baad bhi mail na mile -> admin review
     max_utr_tries: int = 5
     max_open_orders: int = 5
-    min_amount: int = 10
+    min_amount: int = 1
     max_amount: int = 50000
 
     worker_interval: int = 15
