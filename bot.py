@@ -44,9 +44,9 @@ def _int_env(name: str, default: int = 0) -> int:
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_ID = _int_env("ADMIN_ID")
 DB_PATH = os.getenv("DB_PATH", "bot.db").strip() or "bot.db"
-STORE_NAME = os.getenv("STORE_NAME", "MY STORE").strip()
+STORE_NAME = os.getenv("STORE_NAME", "ORVIX STORE").strip()
 SUPPORT = os.getenv("SUPPORT_USERNAME", "").strip()
-MIN_AMOUNT = _int_env("MIN_AMOUNT", 10)
+MIN_AMOUNT = _int_env("MIN_AMOUNT", 1)
 MAX_AMOUNT = _int_env("MAX_AMOUNT", 50000)
 PRESETS = (10, 50, 100, 200, 500, 1000)
 IST = timezone(timedelta(hours=5, minutes=30))
